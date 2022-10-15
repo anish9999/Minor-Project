@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Add Regular Board Marks</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="result.html">Regular Board Marks</a></li>
+                           <li class="breadcrumb-item active">Add Regular Board Marks</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               {% include 'includes/messages.html' %}
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                        {% if action is None %}
+                           <form action="?action=get_student" method="post">
+                              {% csrf_token %}
+                            <div class="row">
+                                 <div class="col-12">
+                                    <h5 class="form-title"><span>Add Regular Board Marks</span></h5>
+                                 </div>
+                                  <div class="col-12 col-sm-6">
+                                   <label>Course</label>
+                                      <select class="form-control" name="course_id">
+                                        <option>Select Course</option>
+                                       {% for course in courses %}
+                                       <option value="{{ course.id }}">{{ course.name }}</option>
+                                       {% endfor %}
+                                      </select>
+                                </div>
+                            <div class="col-12 col-sm-6">
+                                <label>Session Year </label>
+                                <select class="form-control" name="session_year">
+                                    <option>Select Session Year</option>
+                                    {% for session_year in session_years %}
+                                        <option value="{{ session_year.id }}">{{ session_year.session_start }} to {{ session_year.session_end }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                           <div class="col-12 col-sm-6">
+                                <label> Year Part </label>
+                                <select class="form-control" name="year_part">
+                                    <option>Select Year Part</option>
+                                    {% for i in year_part %}
+                                        <option value="{{ i.id }}">{{ i.year_part }} </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <br>
+                             <div class="col-12 mt-4">
+                              <button type="submit" class="btn btn-primary">Fetch Student</button>
+                             </div>
+                            </div>
+                            </form>
+                        {% else %}
+                         <form action="{% url 'regular_board_result_save' %}" method="post" enctype="multipart/form-data">
+                              {% csrf_token %}
+                              <div class="row">
+                                 <div class="col-12">
+                                    <h5 class="form-title"><span>Regular Board Marks</span></h5>
+                                 </div>
+                                  <div class="col-12 col-sm-6">
+                                     <label>Course</label>
+                                       <select class="form-control" name="course_id" required>
+                                          <option value="{{get_course.id}}">{{get_course.name}}</option>
+                                       </select>
+                                 </div>
+                                  <div class="col-12 col-sm-6">
+                                   <label>Session Year</label>
+                                      <select class="form-control" name="session_year">
+                                       <option value="{{get_session_year.id}}">{{get_session_year.session_start}} to {{get_session_year.session_end}}</option>
+                                      </select>
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                   <label> Year Part</label>
+                                      <select class="form-control" name="year_part">
+                                       <option value="{{get_year_part.id}}">{{get_year_part.year_part}}</option>
+                                      </select>
+                                </div>
+                                 <div class="col-12 col-sm-6">
+                                   <label>Students</label>
+                                      <select class="form-control" name="student_id" required>
+                                        <option>Select Student</option>
+                                       {% for i in students %}
+                                       <option value="{{ i.admin.id }}">RollNo({{ i.RollNo}}):  {{i.admin.first_name}}{{i.admin.last_name}}</option>
+                                       {% endfor %}
+                                      </select>
+                                </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label>Exam Held Date</label>
+                                       <input type="text" class="form-control" name="exam_held_date" required>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label>Marksheet</label>
+                                       <input type="file" class="form-control" name="marksheet" required>
+                                    </div>
+                                 </div>
+                                  <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label>Full Marks</label>
+                                       <input type="number" class="form-control" name="full_marks" required>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label>Obtained Marks</label>
+                                       <input type="number" class="form-control" name="obtained_marks" required>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label>Result</label>
+                                       <input type="text" class="form-control" name="result" required>
+                                    </div>
+                                 </div>
+                                 <br>
+                                 <div class="col-12 mt-4">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                 </div>
+                              </div>
+                           </form>
+                        {% endif %}
+                        </div>
+                    </div>
+                  </div>
+                </div>
+</div>
+{% endblock %}
+

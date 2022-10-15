@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+   <div class="col-sm-12">
+      <div class="card">
+         <div class="card-body">
+            <form  class="needs-validation" novalidate method="post" action="{% url 'add_student' %}" enctype="multipart/form-data">
+               {% csrf_token %}
+               <div class="col-12">
+                  <h5 class="form-title"><span>Add Student</span></h5>
+               </div>
+                {% include 'includes/messages.html' %}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="validationCustom01">Profile Pic</label>
+                            <input type="file" class="form-control" name="profile_pic" id="validationCustom01" required>
+                             <div class="invalid-feedback">
+                                     Please Enter a Profile pic.
+                                   </div>
+                                      <div class="valid-feedback">
+                                         Looks good!
+                                      </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                  <div class="form-group">
+                     <label for="validationCustom02">Username</label>
+                     <input type="text" class="form-control" name="username" id="validationCustom02" required>
+                       <div class="invalid-feedback">
+                                     Please provide a  Username.
+                                   </div>
+                                      <div class="valid-feedback">
+                                         Looks good!
+                                      </div>
+                  </div>
+                    </div>
+                  <div class="col-sm-12">
+                  <div class="form-group">
+                     <label >Password</label>
+                     <input type="password" class="form-control" name="password" required>
+                       <div class="invalid-feedback">
+                                     Please Enter Strong Password.
+                                   </div>
+                                      <div class="valid-feedback">
+                                         Looks good!
+                                      </div>
+                  </div>
+                  </div>
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                     <label for="validationCustom04">first name</label>
+                                    <input type="text" class="form-control" id="validationCustom04" placeholder="first name" name="first_name" required>
+                                     <div class="invalid-feedback">
+                                     Please enter your first name
+                                   </div>
+                                        <div class="valid-feedback">
+                                  Looks good!
+                                     </div>
+                                  </div>
+                                </div>
+
+                                <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                     <label for="validationCustom05">Last name</label>
+                                    <input type="text" class="form-control" id="validationCustom05" placeholder="Last name" name="last_name" required>
+                                         <div class="invalid-feedback">
+                                     Please enter your last name
+                                   </div>
+                                    <div class="valid-feedback">
+                                  Looks good!
+                                     </div>
+                                  </div>
+                                </div>
+
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom06">Roll No</label>
+                                       <input type="text" class="form-control" name="RollNo"  id="validationCustom06" required>
+                                         <div class="invalid-feedback">
+                                     Please enter Correct Rollno.
+                                   </div>
+                                      <div class="valid-feedback">
+                                         Looks good!
+                                      </div>
+                                    </div>
+                                 </div>
+                        <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom20">Student Id</label>
+                                       <input type="text" class="form-control" name="id"  id="validationCustom20" required>
+                                         <div class="invalid-feedback">
+                                     Please enter Correct Id.
+                                   </div>
+                                      <div class="valid-feedback">
+                                         Looks good!
+                                      </div>
+                                    </div>
+                                 </div>
+
+
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom07">Gender</label>
+                                       <select class="form-control" name="gender"  id="validationCustom07" required>
+                                          <option selected disabled value="">Select Gender</option>
+                                          <option value="Female">Female</option>
+                                          <option value="Male">Male</option>
+                                          <option value="Others">Others</option>
+                                       </select>
+                                         <div class="invalid-feedback">
+                                     Please select Gender.
+                                   </div>
+                                      <div class="valid-feedback">
+                                         Looks good!
+                                      </div>
+                                    </div>
+                                 </div>
+
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom08">Date of Birth</label>
+                                       <div>
+                                          <input type="date" class="form-control" name="dob" id="validationCustom08"  required>
+                                       </div>
+
+                                        <div class="invalid-feedback">
+                                            Please provide a valid DOB.
+                                        </div>
+                                        <div class="valid-feedback">
+                                         Looks good!
+                                      </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <label for="validationEmail">Email</label>
+                                 <input type="email" name="email" id="validationEmail" placeholder="Your email ID.." class="form-control"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+                                   <div class="valid-feedback feedback-pos">
+                                        Looks good!
+                                   </div>
+                                       <div class="invalid-feedback feedback-pos">
+                                        Please input valid email ID
+                                       </div>
+                               </div>
+
+
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                  <label for="validationCustom09" class="form-label">Course</label>
+                                  <select class="form-control" id="validationCustom09" name="course_id" required>
+                                      <option selected disabled value="">Select Course</option>
+                                        {% for i in course %}
+                                        <option value="{{i.id}}">{{i.name}}</option>
+                                        {% endfor %}
+                                  </select>
+                                   <div class="invalid-feedback">
+                                     Please select a Course.
+                                   </div>
+                                    <div class="valid-feedback">
+                                         Looks good!
+                                      </div>
+                                </div>
+                                    </div>
+
+                                   <div class="col-12 col-sm-6">
+                                        <div class="form-group">
+                                  <label for="validationCustom10" class="form-label">Session Year</label>
+                                  <select class="form-control" id="validationCustom10" name="session_year_id" required>
+                                      <option selected disabled value="">Select Session Year</option>
+                                        {% for i in session_year %}
+                                          <option value="{{i.id}}">{{i.session_start}} To {{i.session_end}}</option>
+                                           {% endfor %}
+                                  </select>
+                                   <div class="invalid-feedback">
+                                     Please select Session Year.
+                                   </div>
+                                      <div class="valid-feedback">
+                                         Looks good!
+                                      </div>
+                                </div>
+                                       </div>
+
+
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                     <label for="validationCustom11">Mobile Number</label>
+						<input type="tel" class="form-control" id="validationCustom11" placeholder="mobile number" name="mobile_number" oninput="check(this)"
+						 required>
+						<div class="valid-feedback">
+							Looks Good!.
+						</div>
+						<div class="invalid-feedback">
+							Please provide a valid number.
+						</div>
+                                 </div>
+                                 </div>
+
+
+                                 <div class="col-12">
+                                    <h5 class="form-title"><span>Parent Information</span></h5>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom12" >Father's Name</label>
+                                       <input type="text" class="form-control" name="father_name" id="validationCustom12" required>
+                                        <div class="valid-feedback">
+							Looks Good!.
+						</div>
+						<div class="invalid-feedback">
+							Please provide appropriate name.
+						</div>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom13">Father's Occupation</label>
+                                       <input type="text" class="form-control" name="father_occupation" id="validationCustom13" required>
+                                                <div class="valid-feedback">
+							Looks Good!.
+						</div>
+						<div class="invalid-feedback">
+							Please fill up the field.
+						</div>
+
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom14">Father's Mobile</label>
+                                       <input type="tel" class="form-control" placeholder="mobile number" name="father_number"  id="validationCustom14" oninput="check(this)" required>
+                                                <div class="valid-feedback">
+							            Looks Good!.
+						               </div>
+						           <div class="invalid-feedback">
+							     Please provide appropriate name.
+						         </div>
+                                    </div>
+                                 </div>
+
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom15">Mother's Name</label>
+                                       <input type="text" class="form-control" name="mother_name" id="validationCustom15" required>
+                                         <div class="valid-feedback">
+							            Looks Good!.
+						               </div>
+						           <div class="invalid-feedback">
+							     Please provide appropriate name.
+						         </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom16">Mother's Occupation</label>
+                                       <input type="text" class="form-control" name="mother_occupation" id="validationCustom16" required>
+                                         <div class="valid-feedback">
+							            Looks Good!.
+						               </div>
+						           <div class="invalid-feedback">
+							     Please fill up the field.
+						         </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom17">Mother's Mobile</label>
+                                       <input type="tel" class="form-control" placeholder="mobile number"  name="mother_number" id="validationCustom17" oninput="check(this)" required>
+                                         <div class="valid-feedback">
+							            Looks Good!.
+						               </div>
+						           <div class="invalid-feedback">
+							     Please provide appropriate number.
+						         </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom18">Present Address</label>
+                                       <textarea class="form-control" name="present_address" id="validationCustom18" required></textarea>
+                                         <div class="valid-feedback">
+							            Looks Good!.
+						               </div>
+						           <div class="invalid-feedback">
+							     Please provide address.
+						         </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label for="validationCustom19">Permanent Address</label>
+                                       <textarea class="form-control" name="permanent_address" id="validationCustom19" required></textarea>
+                                         <div class="valid-feedback">
+							            Looks Good!.
+						               </div>
+						           <div class="invalid-feedback">
+							     Please provide address.
+						         </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Add Student</button>
+                                 </div>
+                    </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

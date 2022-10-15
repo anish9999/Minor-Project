@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">View Internal Marks</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="result.html">Internal Marks</a></li>
+                           <li class="breadcrumb-item active">View Internal Marks</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               {% include 'includes/messages.html' %}
+               {% if action is None %}
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <form action="?action=view_internal_mark" method="post">
+                              {% csrf_token %}
+                            <div class="row">
+                                 <div class="col-12">
+                                    <h5 class="form-title"><span>View Internal Marks</span></h5>
+                                 </div>
+                                <div class="col-12 col-sm-6">
+                                   <label>Subject </label>
+                                      <select class="form-control" name="subjects" required>
+                                        <option>Select Subject</option>
+                                       {% for i in subjects %}
+                                       <option value="{{ i.id }}">{{ i.name }}</option>
+                                       {% endfor %}
+                                      </select>
+                                </div>
+                            <div class="col-12 col-sm-6">
+                                <label>Session Year </label>
+                                <select class="form-control" name="session_years"required>
+                                    <option>Select Session Year</option>
+                                    {% for i in session_years %}
+                                        <option value="{{ i.id }}">{{ i.session_start }} to {{ i.session_end }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <br>
+                             <div class="col-12 mt-4">
+                              <button type="submit" class="btn btn-primary">Show Marks</button>
+                            </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+                {% else %}
+                 <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <form action="?action=view_internal_mark" method="post">
+                              {% csrf_token %}
+                            <div class="row">
+                                 <div class="col-12">
+                                    <h5 class="form-title"><span>View Internal Marks</span></h5>
+                                 </div>
+                                <div class="col-12 col-sm-6">
+                                   <label>Subject </label>
+                                      <select class="form-control" name="subjects" disabled>
+                                       <option value="{{ i.id }}">{{get_subject}}</option>
+                                      </select>
+                                </div>
+                            <div class="col-12 col-sm-6">
+                                <label>Session Year </label>
+                                <select class="form-control" name="session_years" disabled>
+                                        <option value="{{ i.id }}">{{ get_session_year }}</option>
+                                </select>
+                            </div>
+                            <br>
+                             <div class="col-12 mt-4">
+                              <div class="row">
+                                <div class="col-sm-12">
+                                <div class="card card-table">
+                                <div class="card-body">
+                                <div class="table-responsive">
+                                <table id="table_id" class="table table-hover table-center mb-0 ">
+                                 <thead>
+                                    <tr>
+                                       <th>ID</th>
+                                       <th>RollNo</th>
+                                       <th>Assignment Marks</th>
+                                       <th>Exam Marks</th>
+                                       <th>Created_at</th>
+                                       <th>Updated at</th>
+
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                 {% for i in internal_mark %}
+                                    <tr>
+                                       <td>{{i.student_id.admin.id}}</td>
+                                       <td>{{i.student_id.RollNo}}</td>
+                                       <td>{{i.assignment_marks}}</td>
+                                       <td>{{i.exam_marks}}</td>
+                                       <td>{{i.created_at}}</td>
+                                       <td>{{i.updated_at}}</td>
+                                    </tr>
+                                 {% endfor %}
+                                 </tbody>
+                                </table>
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                             </div>
+                            </div>
+                            </div>
+                           </form>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% endif %}
+            </div>
+{% endblock %}

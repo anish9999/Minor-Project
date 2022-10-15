@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block content %}
+   <div class="content container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h3 class="page-title">Welcome Faculty!</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Faculty Dashboard</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                        <div class="card bg-five w-100">
+                            <div class="card-body">
+                                <div class="db-widgets d-flex justify-content-between align-items-center">
+                                    <div class="db-icon">
+                                        <i class="fas fa-chalkboard"></i>
+                                    </div>
+                                    <div class="db-info">
+                                        <h3>{{subject_count}}</h3>
+                                        <h6>Total Subjects</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                        <div class="card bg-six w-100">
+                            <div class="card-body">
+                                <div class="db-widgets d-flex justify-content-between align-items-center">
+                                    <div class="db-icon">
+                                        <i class="fas fa-user-graduate"></i>
+                                    </div>
+                                    <div class="db-info">
+                                        <h3>{{ students_count }}</h3>
+                                        <h6>Total Students</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                        <div class="card bg-seven w-100">
+                            <div class="card-body">
+                                <div class="db-widgets d-flex justify-content-between align-items-center">
+                                    <div class="db-icon">
+                                        <i class="fas fa-book-open"></i>
+                                    </div>
+                                    <div class="db-info">
+                                        <h3>{{InternalResult_pass_count}}/{{InternalResult_count}}</h3>
+                                        <h6>Total Pass student</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                        <div class="card bg-eight w-100">
+                            <div class="card-body">
+                                <div class="db-widgets d-flex justify-content-between align-items-center">
+                                    <div class="db-icon">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="db-info">
+                                        <h3>{{InternalResult_fail_count}}/{{InternalResult_count}}</h3>
+                                        <h6>Total Fail student</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-xl-9">
+                        <div class="row">
+                            <div class="col-12 col-lg-6 col-xl-8 d-flex">
+                                <div class="card flex-fill">
+                                    <div class="card-header">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <h5 class="card-title">Student Enrollment</h5>
+                                            </div>
+                                            <div class="col-6">
+                                                <ul class="list-inline-group text-right mb-0 pl-0">
+                                                    <li class="list-inline-item">
+                                                        <div class="form-group mb-0 amount-spent-select">
+                                                            <select class="form-control form-control-sm">
+                                                                <option>Weekly</option>
+                                                                <option>Monthly</option>
+                                                                <option>Yearly</option>
+                                                            </select>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="apexcharts-area"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-lg-6 col-xl-4 d-flex">
+                                <div class="card flex-fill">
+                                    <div class="card-header">
+                                        <div class="row align-items-center">
+                                            <div class="col-12">
+                                                <h5 class="card-title">Year Progress</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dash-widget">
+                                        <div class="circle-bar circle-bar1">
+                                            <div class="circle-graph1" data-percent="{{rounded_number}}">
+                                                <b>{{rounded_number}}%</b>
+                                            </div>
+                                        </div>
+                                        <div class="dash-info">
+                                            <h6> Progressed </h6>
+                                            <h4>{{InternalResult_pass_count}}<span>/{{InternalResult_count}}</span></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-12 col-xl-3 d-flex">
+                        <div class="card flex-fill">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col-12">
+                                        <h5 class="card-title">Calendar</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="calendar-doctor" class="calendar-container"></div>
+                                <div class="calendar-info calendar-info1">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+{% include 'includes/f_chart.html' %}
+{%  endblock %}

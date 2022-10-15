@@ -1,0 +1,45 @@
+<script>
+'use strict';
+
+$(document).ready(function() {
+
+	// Area chart
+
+	if ($('#apexcharts-area').length > 0) {
+	var options = {
+		chart: {
+			height: 350,
+			type: "area",
+			toolbar: {
+				show: false
+			},
+		},
+		dataLabels: {
+			enabled: false
+		},
+		stroke: {
+			curve: "smooth"
+		},
+		series: [{
+			name: "Performance",
+			data: [{{perc}}]
+		}, {
+			name: "Students",
+			color: '#FF0000',
+			data: [24, 48, 56, 32, 34, 52, 25,40]
+		}],
+		xaxis: {
+			categories: ['1st Sem', '2nd Sem', '3rd Sem', '4th Sem', '5th Sem', '6th Sem', '7th Sem', '8th Sem'],
+		}
+	}
+	var chart = new ApexCharts(
+		document.querySelector("#apexcharts-area"),
+		options
+	);
+	chart.render();
+	}
+
+
+});
+
+</script>

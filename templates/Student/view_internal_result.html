@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container-fluid">
+               <div class="page-header">
+
+            <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Internal Result</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="index.html">Result</a></li>
+                           <li class="breadcrumb-item active">Internal Result</li>
+                        </ul>
+                     </div>
+                     <div class="col-auto text-right float-right ml-auto">
+                        <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+                     </div>
+                  </div>
+               </div>
+                 {% include 'includes/messages.html' %}
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card card-table">
+                        <div class="card-body">
+                           <div class="table-responsive">
+                              <table id="table_id" class="table table-hover table-center mb-0 ">
+                                 <thead>
+                                    <tr>
+                                        <th>#ID</th>
+                                        <th>Subject</th>
+                                        <th>Assignments Marks</th>
+                                        <th>Exam Marks</th>
+                                        <th>status</th>
+                                    </tr>
+                                 </thead>
+                                    
+                                    {% for i in student_internal_result %}
+                                    <tr>
+                                        <td>{{i.id}}</td>
+                                        <td>{{ i.subject_id}}</td>
+                                        <td>{{ i.assignment_marks }}</td>
+                                        <td>{{ i.exam_marks }}</td>
+                                        <td>
+                                            {% if i.exam_marks >= 40 %}
+                                                <span class="alert alert-success">Pass</span>
+                                            {% else %}
+                                                <span class="alert alert-danger">Fail</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.container-fluid -->
+
+  {% endblock %}

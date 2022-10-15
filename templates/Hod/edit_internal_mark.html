@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content container-fluid">
+               <div class="page-header">
+                  <div class="row align-items-center">
+                     <div class="col">
+                        <h3 class="page-title">Edit Back Board Result</h3>
+                        <ul class="breadcrumb">
+                           <li class="breadcrumb-item"><a href="result.html">Back Board Result</a></li>
+                           <li class="breadcrumb-item active">Edit Back Board Result</li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               {% include 'includes/messages.html' %}
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="card">
+                        <div class="card-body">
+                           <form action="{% url 'update_internal_mark' %}" method="post" enctype="multipart/form-data">
+                              {% csrf_token %}
+                            <div class="row">
+                                 <div class="col-12">
+                                    <h5 class="form-title"><span>Edit Internal Result</span></h5>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                     <label>Course</label>
+                                       <select class="form-control" name="subject_id" >
+                                          <option value="{{subject.id}}"> {{subject.name}}</option>
+                                          <input type="text" class="form-control" name="id" value="{{internal_mark.id}}" hidden>
+                                       </select>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <label>Session Year</label>
+                                       <select class="form-control" name="session_year_id" >
+                                          <option value="{{session_year.id}}">{{ session_year.session_start }} to {{ session_year.session_end }}</option>
+                                       </select>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <label>Student</label>
+                                       <select class="form-control" name="student_id" >
+                                          <option value="{{student_id.id}}">{{student_id.RollNo}} : {{ student_id.admin.first_name}} {{ student_id.admin.last_name }}</option>
+                                       </select>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label>Assignment Marks</label>
+                                       <input type="text" class="form-control" name="assignment_marks" value="{{internal_mark.assignment_marks}}">
+                                    </div>
+                                 </div>
+                                 <div class="col-12 col-sm-6">
+                                    <div class="form-group">
+                                       <label>Exam Marks</label>
+                                       <input type="text" class="form-control" name="exam_marks" value = "{{internal_mark.exam_marks}}">
+                                    </div>
+                                 </div>
+                                 <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Update Marks</button>
+                                 </div>
+                              </div>
+                        </form>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+{% endblock %}

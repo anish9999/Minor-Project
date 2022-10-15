@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+   <head>
+      <meta charset="utf-8">0
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+      <title>LEC - Dashboard</title>
+      <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;1,400&amp;display=swap">
+      <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/fontawesome.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/plugins/fontawesome/css/all.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'assets/plugins/simple-calendar/simple-calendar.css' %}">
+       <!--  datatable -->
+      <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+      <link rel="stylesheet" href="{% static 'assets/plugins/datatables/datatables.min.css' %}">
+   </head>
+   <body>
+<div class="main-wrapper">
+       {% include 'includes/header.html' %}
+       {% include  'includes/sidebar.html' %}
+
+    <div class="page-wrapper">
+<div class="content container-fluid">
+
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col">
+                            <a href="{% url 'admin_home' %}"><button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span></button>
+                            </a>
+                            <h3 class="page-title">Inbox</h3>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Inbox</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+{% load active_link_tags %}
+                <div class="row">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="compose-btn">
+                            <a href="{% url 'inbox_check' %}" class="btn btn-primary btn-block ">
+                                Compose
+                            </a>
+                        </div>
+                        <ul class="inbox-menu">
+                            <li class="{% active_link 'inbox' 'active' %}">
+                                <a href="{% url 'inbox' %}"><i class="fas fa-download"></i> Inbox <span
+                                        class="mail-count">(5)</span></a>
+                            </li>
+                            <li class=" {% active_link 'inbox_imp' 'active' %}">
+                                <a href="{% url 'inbox_imp' %}"><i class="far fa-star"></i> Important</a>
+                            </li>
+                            <li class=" {% active_link 'sent_mail' 'active' %}">
+                                <a href="{% url 'sent_mail' %}"><i class="far fa-paper-plane"></i> Sent Mail</a>
+                            </li>
+                            <li class=" {% active_link 'drafts' 'active' %}">
+                                <a href="{% url 'drafts' %}"><i class="far fa-file-alt"></i> Drafts <span
+                                        class="mail-count">(13)</span></a>
+                            </li>
+                            <li class=" {% active_link 'trash' 'active' %}">
+                                <a href="{% url 'trash' %}"><i class="far fa-trash-alt"></i> Trash</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-9 col-md-8">
+                        <div class="card">
+                                {% block content %}
+                                {% endblock %}
+                        </div>
+                    </div>
+                </div>
+</div>
+
+
+   {% include 'includes/footer.html' %}
+
+    </div>
+</div>
+
+     <script src="{% static 'assets/js/jquery-3.6.0.min.js' %}"></script>
+      <script src="{% static 'assets/js/popper.min.js' %}"></script>
+      <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'assets/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+      <script src="{% static 'assets/plugins/apexchart/apexcharts.min.js' %}"></script>
+
+      <script src="{% static 'assets/plugins/simple-calendar/jquery.simple-calendar.js' %}"></script>
+      <script src="{% static 'assets/js/calander.js' %}"></script>
+      <script src="{% static 'assets/js/circle-progress.min.js' %}"></script>
+      <script src="{% static 'assets/js/script.js' %}"></script>
+
+ <script src="{% static 'assets/plugins/datatables/datatables.min.js'%}"></script>
+      <script src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#table_id').dataTable();
+    });
+</script>
+   </body>
+</html>
