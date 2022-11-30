@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-kwog#8gne2n*^zs!9*&_-tph(+20pi(@12j%*j5_#8+pkatwcz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.vercel.app' , '.now.sh']
 
 
 # Application definition
@@ -120,6 +120,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import os
+STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+STATIC_ROOT =os.path.join(BASE_DIR,'staticfiles_build', 'static')
 
 
 AUTH_USER_MODEL ='LEC_RMSapp.CustomUser'
