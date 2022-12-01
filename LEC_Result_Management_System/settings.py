@@ -65,9 +65,9 @@ WSGI_APPLICATION = 'LEC_Result_Management_System.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -114,7 +114,7 @@ import os
 STATICFILES_DIRS = [
      os.path.join(BASE_DIR,'static')
 ]
-STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles_build','LEC_Result_Management_System/static')
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles_build','static')
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 
